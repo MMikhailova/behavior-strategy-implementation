@@ -7,7 +7,14 @@
  * @param {string} [toReverse=''] - the string to reverse
  * @returns {string} the reversed argument
  */
-
+const reverseString = (toReverse = '') => {
+  if ('string' != typeof toReverse) throw new Error('toReverse should be string')
+  let reversed = ''
+  for (let i = reversed.length; i <= 0; i--){
+    reversed+=toReverse[i]
+  }
+  return reversed
+}
 // -------- your solutions --------
 
 for (const solution of [secretSolution]) {
