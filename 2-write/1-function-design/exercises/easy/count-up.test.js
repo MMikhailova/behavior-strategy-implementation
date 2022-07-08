@@ -1,6 +1,6 @@
 // #todo
 
-'use strict';
+"use strict";
 
 /**
  * builds an array counting up from 0 to `max`
@@ -8,20 +8,53 @@
  *  max must be an integer that is greater than 0
  * @returns {number[]} an array of all numbers from 0 to `max`
  */
+function countUp(max = 0) {
+  if (Number.isNaN(max)) throw new TypeError("max is not a number");
+  if (!Number.isInteger(max)) throw new Error("max is not an integer");
+  if (0 > max) throw new RangeError("max is less than 0");
+  let newArray = [];
+  for (let e = 0; e <= max; e++) {
+    newArray.push(e);
+  }
+  return newArray;
+}
+
+// -------- your solutions --------
+
+for (const solution of [countUp]) {
+  // the main test suite for the function
+  describe(solution.name + ": counts up from 0", () => {
+    it("default parameter is 0 -> [0]", () => {
+      const actual = solution();
+      expect(actual).toEqual([0]);
+    });
+    it("0 -> [0]", () => {
+      expect(solution(0)).toEqual([0]);
+    });
+    it("1 -> [0, 1]", () => {
+      expect(solution(1)).toEqual([0, 1]);
+    });
+    describe('"max" is not a number', () => {
+      it('"12" should raise an error', () => {
+        expect(() => solution("12")).toThrow(TypeError("max is not a number"));
+      });
+    });
+  });
+}
 
 // -------- your solutions --------
 
 for (const solution of [secretSolution]) {
   // the main test suite for the function
-  describe(solution.name + ': counts up from 0', () => {
-    it('default parameter is 0 -> [0]', () => {
+  describe(solution.name + ": counts up from 0", () => {
+    it("default parameter is 0 -> [0]", () => {
       const actual = solution();
       expect(actual).toEqual([0]);
     });
-    it('0 -> [0]', () => {
+    it("0 -> [0]", () => {
       expect(solution(0)).toEqual([0]);
     });
-    it('1 -> [0, 1]', () => {
+    it("1 -> [0, 1]", () => {
       expect(solution(1)).toEqual([0, 1]);
     });
     // write at least 5 more tests ...
