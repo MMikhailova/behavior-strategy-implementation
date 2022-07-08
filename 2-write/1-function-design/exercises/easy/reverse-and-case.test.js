@@ -12,33 +12,61 @@
  */
 
 // -------- your solutions --------
-
-for (const solution of [secretSolution]) {
+const reverseString = (text = '', lowerCase = true) => {
+  if (typeof text !== 'string') throw new TypeError('type of text should be string');
+  if (typeof lowerCase !== 'boolean') throw new TypeError('lowercase is not a boolean');
+  let reversed = '';
+  for (let i of text) {
+    reversed = i+reversed;
+  }
+  let b = '';
+  return (b = lowerCase ? reversed.toLowerCase() : reversed.toUpperCase()), b;
+}
+for (const solution of [reverseString]) {
   describe(
-    solution.name + ': reverses a string then sets to lower or upper case',
+    solution.name + ": reverses a string then sets to lower or upper case",
     () => {
       describe("the function's default parameters", () => {
-        it('second parameter defaults to true', () => {
-          expect(solution('asdf')).toEqual('fdsa');
+        it("second parameter defaults to true", () => {
+          expect(solution("asdf")).toEqual("fdsa");
         });
-        it('first parameter defaults to an empty string', () => {
-          expect(solution()).toEqual('');
+        it("first parameter defaults to an empty string", () => {
+          expect(solution()).toEqual("");
         });
       });
       // write the tests indicated by the comments
-      describe('when set to lower case', () => {
+      describe("when set to lower case", () => {
         // when the text is an empty string
-        it(_, () => {
-          expect(solution(_, _)).toEqual(_);
+        it("", () => {
+          expect(solution("", true)).toEqual("");
         });
         // when the text is all upper case
+        it("'FRSD'--'DSRF>", () => {
+          expect(solution("FRSD", true)).toEqual("dsrf");
+        });
         // when the text is all lower case
+        it("'hello'--'olleh>", () => {
+          expect(solution("hello", true)).toEqual("olleh");
+        });
         // when the text is mixed upper and lower case
+        it("'HeLLo'--'olleh>", () => {
+          expect(solution("HeLLo", true)).toEqual("olleh");
+        });
         // when the text contains punctuation
+        it("'He..Lo'--'ol..eh>", () => {
+          expect(solution("He..Lo", true)).toEqual("ol..eh");
+        });
         // when the text contains numbers
+        it("'He12Lo'--'ol12eh", () => {
+          expect(solution("He12Lo", true)).toEqual("ol21eh");
+        });
       });
-      describe('when set to upper case', () => {
+      describe("when set to upper case", () => {
+        
         // when the text is an empty string
+         it("", () => {
+           expect(solution("", false)).toEqual("");
+         });
         // when the text is all upper case
         // when the text is all lower case
         // when the text is mixed upper and lower case

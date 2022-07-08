@@ -8,16 +8,16 @@
  * @returns {string} the reversed argument
  */
 const reverseString = (toReverse = '') => {
-  if ('string' != typeof toReverse) throw new Error('toReverse should be string')
-  let reversed = ''
-  for (let i = reversed.length; i <= 0; i--){
-    reversed+=toReverse[i]
+  if ('string' != typeof toReverse) throw new TypeError('toReverse should be string');
+  let reversed = '';
+  for (let i = toReverse.length - 1; i >= 0; i--) {
+    reversed += toReverse[i];
   }
-  return reversed
-}
+  return reversed;
+};
 // -------- your solutions --------
 
-for (const solution of [secretSolution]) {
+for (const solution of [reverseString]) {
   // the main test suite for the function
   describe(solution.name + ': reverses a string', () => {
     it('default parameter is an empty string -> ""', () => {
@@ -28,6 +28,15 @@ for (const solution of [secretSolution]) {
     });
     it('a string with all capital letters', () => {
       expect(solution('ASDF')).toEqual('FDSA');
+    });
+    describe('if toReverse is not a string should raise an error', () => {
+      it('12 should raise an error', () => {
+        expect(() => solution(12)).toThrowError("toReverse should be string");
+      });
+      it("undefined should raise an error", () => {
+        expect(solution(undefined)).toBe(
+         '');
+      });
     });
     // write at least 5 more tests ...
   });
